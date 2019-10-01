@@ -21,7 +21,6 @@ describe('Dashboard page tests', () => {
   });
 
   it('should displayed 4 heroes in "Top hero" section', () => {
-   // heroesPage.findHeroByIndex(1).deleteHero();
-
+    expect(page.getTopHeroesQuantity()).toBe(4);
   });
 });

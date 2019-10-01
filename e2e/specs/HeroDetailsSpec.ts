@@ -1,4 +1,3 @@
-import {HeroesPage} from '../pages/HeroesPage';
 import {DashboardPage} from '../pages/DashboardPage';
 import {HeroDetailsPage} from '../pages/HeroDetailsPage';
 
