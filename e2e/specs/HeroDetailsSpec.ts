@@ -15,7 +15,7 @@ describe('Heroes page tests', () => {
     await heroDetailsPage.enterName('Anna');
     dashboardPage = await heroDetailsPage.clickSave();
     heroDetailsPage = await dashboardPage.navigateToHeroDetailByIndex(0);
-    expect(heroDetailsPage.getHeaderText()).toContain('Anna');
+    expect(await heroDetailsPage.getHeaderText()).toContain('Anna');
   });
 
   it('should be able to reject changes of hero name', async() => {

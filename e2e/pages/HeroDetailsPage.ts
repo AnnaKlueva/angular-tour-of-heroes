@@ -1,7 +1,6 @@
 import { element, by, $} from 'protractor';
 import {BasePage} from './BasePage';
 import {DashboardPage} from './DashboardPage';
-import {NavigationModule} from './NavigationModule';
 
 /**
  * Page has url address: "/detail/{heroNumber}/"
@@ -33,11 +32,7 @@ export class HeroDetailsPage extends BasePage {
 
   async clickBackButton() {
     await this.backButton.click();
-    await this.isNotVisible(this.backButton );
+    await this.isNotVisible(this.backButton);
     return new DashboardPage();
-  }
-
-  getNavigationBlock() {
-    return new NavigationModule();
   }
 };

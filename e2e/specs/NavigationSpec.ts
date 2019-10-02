@@ -14,7 +14,7 @@ describe('Navigation tests', () => {
 
   it('should navigate to hero detail page', async () => {
     heroDetailsPage = await dashboardPage.navigateToHeroDetailByIndex(0);
-    expect(heroDetailsPage.getHeaderText()).toContain('details');
+    expect(await heroDetailsPage.getHeaderText()).toContain('details');
   });
 
   it('should navigate to heroes page', async () => {
@@ -27,5 +27,4 @@ describe('Navigation tests', () => {
     dashboardPage = await heroesPage.getNavigationBlock().navigateToDashboardPage();
     expect(dashboardPage.getHeaderText()).toBe('Top Heroes');
   });
-
 });

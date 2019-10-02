@@ -1,4 +1,4 @@
-import {browser, element, by, $$, $} from 'protractor';
+import {browser, element, by, $$, $, By} from 'protractor';
 import {BasePage} from './BasePage';
 import {NavigationModule} from './NavigationModule';
 
@@ -10,8 +10,8 @@ export class HeroesPage extends BasePage {
   private backButton = element(by.buttonText('Back'));
   private addHeroButton = element(by.buttonText('Add New Hero'));
   private listOfHeroes = $$('.heroes li');
-  private listOfDeleteButtons = $$('.delete-button');
   private headerOfPage = $('my-heroes h2');
+  private deleteButton = '.delete-button';
 
   navigateTo() {
     return browser.get('/heroes');
@@ -42,7 +42,10 @@ export class HeroesPage extends BasePage {
   }
 
   async deleteLastHero() {
-    return await this.listOfDeleteButtons.last().click();
+    await this.listOfHeroes.last()
+      .getWebElement()
+      .findElement(By.css(this.deleteButton))
+      .click();
   }
 
   async getLastHeroName() {

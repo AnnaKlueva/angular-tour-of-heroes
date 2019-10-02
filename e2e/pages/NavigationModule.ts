@@ -3,7 +3,6 @@ import {$} from 'protractor';
 import {WebdriverWebElement} from 'protractor/built/element';
 import {HeroesPage} from './HeroesPage';
 
-
 /**
  * Module with navigation that exists on several pages
  * */

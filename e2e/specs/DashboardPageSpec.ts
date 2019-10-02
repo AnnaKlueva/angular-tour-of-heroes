@@ -1,26 +1,19 @@
 import {DashboardPage} from '../pages/DashboardPage';
-import {HeroesPage} from '../pages/HeroesPage';
 
 describe('Dashboard page tests', () => {
-  let page: DashboardPage;
-  let heroesPage: HeroesPage;
+  let dashboardPage: DashboardPage;
 
   beforeEach(async() => {
-    page = new DashboardPage();
-    heroesPage = new HeroesPage();
-    await page.navigateTo();
-  });
-
-  it('should navigate to hero detail page', () => {
-    expect(page.navigateToHeroDetailByIndex(0)).toEqual('Narco');
+    dashboardPage = new DashboardPage();
+    await dashboardPage.navigateTo();
   });
 
   it('should search existing hero', async() => {
-    await page.searchFor('Narco');
-    expect( page.selectSearchResultByIndex(0)).toBe('Narco');
+    await dashboardPage.searchFor('Narco');
+    expect( dashboardPage.selectSearchResultByIndex(0)).toBe('Narco');
   });
 
   it('should displayed 4 heroes in "Top hero" section', () => {
-    expect(page.getTopHeroesQuantity()).toBe(4);
+    expect(dashboardPage.getTopHeroesQuantity()).toBe(4);
   });
 });

@@ -25,16 +25,15 @@ export class DashboardPage extends BasePage {
   }
 
   async navigateToHeroDetailByIndex(index: number) {
+    await browser.wait(await this.isVisible(this.searchBox), 3000);
     await this.topHeroes.get(index).click();
     return new HeroDetailsPage();
   }
 
   async searchFor(name) {
-    if (this.searchBox.isDisplayed()) {
       await this.searchBox.click();
       await this.searchBox.sendKeys(name);
       await browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    }
   }
 
   async selectSearchResultByIndex( index: number ) {
@@ -42,7 +41,7 @@ export class DashboardPage extends BasePage {
   }
 
   async getHeaderText() {
-    return await this.headerOfPage.getText();
+    return this.headerOfPage.getText();
   }
 
   getNavigationBlock() {
