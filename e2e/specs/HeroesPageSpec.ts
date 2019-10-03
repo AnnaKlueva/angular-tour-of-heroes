@@ -24,6 +24,6 @@ describe('Heroes page tests', () => {
     await page.clickAddHeroButton();
     await page.enterName('Anna');
     await page.clickBackButton();
-    expect(page.getLastHeroName).not.toContain('Anna');
+    expect(page.getLastHeroName()).not.toContain('Anna');
   });
 });
