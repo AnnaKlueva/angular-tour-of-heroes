@@ -11,6 +11,8 @@ jobs:
             ng e2e
       - store_test_results:
             path: /
+      - store_artifacts:
+            path: /
       - run:
           name: Create report
           command:
