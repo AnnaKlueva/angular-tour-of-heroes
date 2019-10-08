@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    steps:
+      - checkout
+      - run:
+          name: Start server and tests
+          command:
+            npm install
+            ng serve
+            ng e2e
+            nmp e2eReport
