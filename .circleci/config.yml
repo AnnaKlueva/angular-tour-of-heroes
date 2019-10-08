@@ -10,4 +10,4 @@ jobs:
             npm install
             ng serve
             ng e2e
-            nmp e2eReport
+            npm run e2eReport
