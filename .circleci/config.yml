@@ -10,4 +10,9 @@ jobs:
             npm install
             ng serve
             ng e2e
+      - store_test_results:
+            path: allure-results
+      - run:
+          name: Create report
+          command:
             npm run e2eReport
