@@ -8,10 +8,9 @@ jobs:
           name: Start server and tests
           command:
             npm install
-            ng serve
             ng e2e
       - store_test_results:
-            path: allure-results
+            path: toh
       - run:
           name: Create report
           command:
