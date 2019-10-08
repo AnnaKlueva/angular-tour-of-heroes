@@ -48,15 +48,19 @@ export class HeroesPage extends BasePage {
       .click();
   }
 
-  async getLastHeroName() {
+  async getLastHeroName(): Promise<string> {
     return this.listOfHeroes.last().getText();
   }
 
-  async getHeaderText() {
+  async getHeaderText(): Promise<string> {
     return await this.headerOfPage.getText();
   }
 
   getNavigationBlock() {
     return new NavigationModule();
+  }
+
+  async findHeroByName(heroName: string): Promise<boolean> {
+    return (await this.listOfHeroes.getText()).toString().includes(heroName);
   }
 };

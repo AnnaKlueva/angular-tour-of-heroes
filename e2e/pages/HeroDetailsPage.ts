@@ -11,26 +11,26 @@ export class HeroDetailsPage extends BasePage {
   private saveButton = element(by.buttonText('Save'));
   private backButton = element(by.buttonText('Back'));
 
-  async getHeaderText() {
-    return await this.headerOfPage.getText();
+  async getHeaderText(): Promise<string> {
+    return this.headerOfPage.getText();
   }
 
-  async getHeroName() {
+  async getHeroName(): Promise<string> {
     return await this.nameInput.getText();
   }
 
-  async enterName(newHeroName: string) {
+  async enterName(newHeroName: string): Promise<void> {
     await this.nameInput.clear();
     await this.nameInput.sendKeys(newHeroName);
   }
 
-  async clickSave() {
+  async clickSave(): Promise<DashboardPage> {
     await this.saveButton.click();
     await this.isNotVisible(this.saveButton);
     return new DashboardPage();
   }
 
-  async clickBackButton() {
+  async clickBackButton(): Promise<DashboardPage> {
     await this.backButton.click();
     await this.isNotVisible(this.backButton);
     return new DashboardPage();

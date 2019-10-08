@@ -24,31 +24,31 @@ export class DashboardPage extends BasePage {
     return browser.get('/dashboard');
   }
 
-  async navigateToHeroDetailByIndex(index: number) {
+  async navigateToHeroDetailByIndex(index: number): Promise<HeroDetailsPage> {
     await browser.wait(await this.isVisible(this.searchBox), 3000);
     await this.topHeroes.get(index).click();
     return new HeroDetailsPage();
   }
 
-  async searchFor(name) {
+  async searchFor(name): Promise<void> {
       await this.searchBox.click();
       await this.searchBox.sendKeys(name);
       await browser.actions().sendKeys(protractor.Key.ENTER).perform();
   }
 
-  async selectSearchResultByIndex( index: number ) {
+  async selectSearchResultByIndex( index: number ): Promise<string> {
      return this.searchResults.get(index).getText();
   }
 
-  async getHeaderText() {
+  async getHeaderText(): Promise<string> {
     return this.headerOfPage.getText();
   }
 
-  getNavigationBlock() {
+  getNavigationBlock(): NavigationModule {
     return new NavigationModule();
   }
 
-  async getTopHeroesQuantity() {
+  async getTopHeroesQuantity(): Promise<number> {
     return this.topHeroes.count();
   }
 }

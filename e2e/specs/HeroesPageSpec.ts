@@ -1,4 +1,5 @@
 import {HeroesPage} from '../pages/HeroesPage';
+import {forEach} from '@angular/router/src/utils/collection';
 
 describe('Heroes page tests', () => {
   let page: HeroesPage;
@@ -26,4 +27,15 @@ describe('Heroes page tests', () => {
     await page.clickBackButton();
     expect(page.getLastHeroName()).not.toContain('Anna');
   });
+
+  it('should create several heroes', async () => {
+    const heroNames: string[] = ['Anna', 'Batman', 'Packman'];
+    for (const heroName of heroNames) {
+      await page.addHero(heroName);
+    }
+    for (const heroName of heroNames) {
+      expect(await page.findHeroByName(heroName)).toBe(true);
+    }
+
+  })
 });

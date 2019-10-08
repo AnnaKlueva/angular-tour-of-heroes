@@ -15,12 +15,12 @@ export class NavigationModule  {
     this.linkOnHeroesPage = $('a[routerlink="/heroes"]');
   }
 
-  async navigateToDashboardPage() {
+  async navigateToDashboardPage(): Promise<DashboardPage> {
     await this.linkOnDashboardPage.click();
     return new DashboardPage();
   }
 
-  async navigateToHeroesPage() {
+  async navigateToHeroesPage(): Promise<HeroesPage> {
     await this.linkOnHeroesPage.click();
     return new HeroesPage();
   }
