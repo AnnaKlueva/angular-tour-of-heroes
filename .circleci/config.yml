@@ -10,7 +10,7 @@ jobs:
             npm install
             ng e2e
       - store_test_results:
-            path: toh
+            path: /
       - run:
           name: Create report
           command:
