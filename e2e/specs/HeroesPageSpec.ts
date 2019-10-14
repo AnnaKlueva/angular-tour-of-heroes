@@ -1,5 +1,4 @@
 import {HeroesPage} from '../pages/HeroesPage';
-import {forEach} from '@angular/router/src/utils/collection';
 
 describe('Heroes page tests', () => {
   let page: HeroesPage;
@@ -9,16 +8,12 @@ describe('Heroes page tests', () => {
     await page.navigateTo();
   });
 
-  it('should be able to add hero', async () => {
-    await page.addHero('Anna');
-    expect(page.getLastHeroName()).toContain('Anna');
-  });
-
   it('should be able to delete hero', async () => {
-    await page.addHero('Anna');
+    const uniqueName = 'Anna'+ Math.random().toString(36).substring(2, 15);
+    await page.addHero(uniqueName);
     expect(page.getLastHeroName()).toContain('Anna');
     await page.deleteLastHero();
-    expect(page.getLastHeroName()).not.toContain('Anna');
+    expect(page.getLastHeroName()).not.toContain(uniqueName);
   });
 
   it('should be able to reject hero creation by tap on "Back" button', async () => {
@@ -28,14 +23,15 @@ describe('Heroes page tests', () => {
     expect(page.getLastHeroName()).not.toContain('Anna');
   });
 
-  it('should create several heroes', async () => {
-    const heroNames: string[] = ['Anna', 'Batman', 'Packman'];
-    for (const heroName of heroNames) {
-      await page.addHero(heroName);
-    }
-    for (const heroName of heroNames) {
-      expect(await page.findHeroByName(heroName)).toBe(true);
-    }
-
-  })
+  const parameters = [
+    { description: 'should create hero with usual name', heroName: 'Anna', result: true},
+    { description: 'should create hero with numeric name ', heroName: '3456', result: true},
+    { description: 'should create hero with specific symbols name', heroName: '?@#', result: true}
+  ];
+  parameters.forEach((parameter) => {
+    it(parameter.description, async() => {
+        await page.addHero(parameter.heroName);
+        expect( await page.findHeroByName(parameter.heroName)).toBe(parameter.result);
+    });
+  });
 });
